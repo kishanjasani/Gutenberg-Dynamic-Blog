@@ -99,6 +99,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
 /* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
 var _jsxFileName = "/var/lib/docker/volumes/optionpanelgutenlocal_htdocs/_data/htdocs/wp-content/plugins/Gutenberg-Dynamic-Blog/src/blocks/latest-post/edit.js";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -126,6 +128,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var LatestPostsEdit = /*#__PURE__*/function (_Component) {
   _inherits(LatestPostsEdit, _Component);
 
@@ -140,15 +143,47 @@ var LatestPostsEdit = /*#__PURE__*/function (_Component) {
   _createClass(LatestPostsEdit, [{
     key: "render",
     value: function render() {
-      console.warn(this.props);
-      return wp.element.createElement("p", {
+      var _this = this;
+
+      var _this$props = this.props,
+          posts = _this$props.posts,
+          className = _this$props.className;
+      return wp.element.createElement(wp.element.Fragment, null, posts && posts.length > 0 ? wp.element.createElement("ul", {
+        className: className,
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 8,
-          columnNumber: 10
+          lineNumber: 14,
+          columnNumber: 5
         }
-      }, "hello ");
+      }, posts.map(function (post) {
+        return wp.element.createElement("li", {
+          key: post.id,
+          __self: _this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 16,
+            columnNumber: 7
+          }
+        }, wp.element.createElement("a", {
+          target: "_blank",
+          rel: "noopener noreferrer",
+          href: post.link,
+          __self: _this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 17,
+            columnNumber: 8
+          }
+        }, post.title.rendered));
+      })) : wp.element.createElement("div", {
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 21,
+          columnNumber: 7
+        }
+      }, posts ? Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('No Post Found!', 'mytheme-blocks') : Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Loading...', 'mytheme-blocks')));
     }
   }]);
 
@@ -159,10 +194,10 @@ var LatestPostsEdit = /*#__PURE__*/function (_Component) {
   var attributes = props.attributes;
   var numberOfPosts = attributes.numberOfPosts;
   var query = {
-    pre_page: numberOfPosts
+    per_page: numberOfPosts
   };
   return {
-    posts: select('core').getEntityRecords('postType', 'post', query)
+    posts: select("core").getEntityRecords("postType", "post", query)
   };
 })(LatestPostsEdit));
 
