@@ -66,7 +66,25 @@ function mytheme_blocks_register() {
 		plugins_url( 'dist/style.css', __FILE__ )
 	);
 
-	mytheme_blocks_register_block_type( 'latest-post' );
+	mytheme_blocks_register_block_type(
+		'latest-post',
+		array(
+			'render_callback' => 'mytheme_blocks_render_latest_posts_block',
+			'attributes'      => array(
+				'numberOfPosts'  => array(
+					'type'    => 'number',
+					'default' => 5,
+				),
+				'postCategories' => array(
+					'type' => 'string',
+				),
+			),
+		)
+	);
 }
 
 add_action( 'init', 'mytheme_blocks_register' );
+
+function mytheme_blocks_render_latest_posts_block( $attributes ) {
+	return '<p>Hello from PHP!</p>';
+}
