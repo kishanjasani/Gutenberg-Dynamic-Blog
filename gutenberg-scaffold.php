@@ -46,7 +46,7 @@ function mytheme_blocks_register() {
 	wp_register_script(
 		'mytheme-blocks-editor-script',
 		plugins_url( 'dist/editor.js', __FILE__ ),
-		[ 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-html-entities' ]
+		[ 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-html-entities', 'wp-block-editor', 'wp-components' ]
 	);
 
 	wp_register_script(
