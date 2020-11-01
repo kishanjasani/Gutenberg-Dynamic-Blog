@@ -61,7 +61,12 @@ module.exports = (env, argv) => {
 											pragmaFrag: "wp.element.Fragment",
 											development: isDevelopment()
 										}
-									]
+									],
+									{
+										plugins: [
+											"@babel/plugin-proposal-class-properties"
+										]
+									}
 								]
 							}
 						},
