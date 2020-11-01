@@ -11,6 +11,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+function mytheme_blocks_categories( $categories, $post ) {
+	return array_merge(
+		$categories,
+		array(
+			array(
+				'slug'  => 'mytheme-category',
+				'title' => __( 'My theme category', 'mytheme-blocks' ),
+				'icon'  => 'wordpress',
+			),
+		)
+	);
+}
+
+add_filter( 'block_categories', 'mytheme_blocks_categories', 10, 2 );
+
 function mytheme_blocks_register_block_type( $block, $options = array() ) {
 	register_block_type(
 		'mytheme-blocks/' . $block,
@@ -31,7 +46,7 @@ function mytheme_blocks_register() {
 	wp_register_script(
 		'mytheme-blocks-editor-script',
 		plugins_url( 'dist/editor.js', __FILE__ ),
-		[ 'wp-blocks', 'wp-i18n' ]
+		[ 'wp-blocks', 'wp-i18n', 'wp-element' ]
 	);
 
 	wp_register_script(
@@ -51,8 +66,7 @@ function mytheme_blocks_register() {
 		plugins_url( 'dist/style.css', __FILE__ )
 	);
 
-	mytheme_blocks_register_block_type( 'firstblock' );
-	mytheme_blocks_register_block_type( 'secondblock' );
+	mytheme_blocks_register_block_type( 'latest-post' );
 }
 
 add_action( 'init', 'mytheme_blocks_register' );
