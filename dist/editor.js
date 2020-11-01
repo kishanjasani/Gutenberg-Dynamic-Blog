@@ -97,6 +97,8 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_1__);
 var _jsxFileName = "/var/lib/docker/volumes/optionpanelgutenlocal_htdocs/_data/htdocs/wp-content/plugins/Gutenberg-Dynamic-Blog/src/blocks/latest-post/edit.js";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -123,6 +125,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var LatestPostsEdit = /*#__PURE__*/function (_Component) {
   _inherits(LatestPostsEdit, _Component);
 
@@ -137,12 +140,13 @@ var LatestPostsEdit = /*#__PURE__*/function (_Component) {
   _createClass(LatestPostsEdit, [{
     key: "render",
     value: function render() {
+      console.warn(this.props);
       return wp.element.createElement("p", {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 6,
-          columnNumber: 13
+          lineNumber: 8,
+          columnNumber: 10
         }
       }, "hello ");
     }
@@ -151,7 +155,16 @@ var LatestPostsEdit = /*#__PURE__*/function (_Component) {
   return LatestPostsEdit;
 }(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
-/* harmony default export */ __webpack_exports__["default"] = (LatestPostsEdit);
+/* harmony default export */ __webpack_exports__["default"] = (Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_1__["withSelect"])(function (select, props) {
+  var attributes = props.attributes;
+  var numberOfPosts = attributes.numberOfPosts;
+  var query = {
+    pre_page: numberOfPosts
+  };
+  return {
+    posts: select('core').getEntityRecords('postType', 'post', query)
+  };
+})(LatestPostsEdit));
 
 /***/ }),
 
@@ -172,11 +185,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])('mytheme-blocks/latest-post', {
-  title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Latest Posts', 'mytheme-blocks'),
-  description: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Block showing latest posts', 'mytheme-blocks'),
-  icon: 'admin-post',
-  category: 'mytheme-category',
+Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])("mytheme-blocks/latest-post", {
+  title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])("Latest Posts", "mytheme-blocks"),
+  description: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])("Block showing latest posts", "mytheme-blocks"),
+  icon: "admin-post",
+  category: "mytheme-category",
   edit: _edit__WEBPACK_IMPORTED_MODULE_0__["default"],
   save: function save() {
     return null;
@@ -207,6 +220,17 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports) {
 
 module.exports = wp["blocks"];
+
+/***/ }),
+
+/***/ "@wordpress/data":
+/*!******************************!*\
+  !*** external ["wp","data"] ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = wp["data"];
 
 /***/ }),
 
